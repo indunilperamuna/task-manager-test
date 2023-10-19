@@ -13,13 +13,16 @@ class TaskController extends Controller
         $query = Task::query()->with(['project']);
 
         if ($request->has('project')) {
-            $tasks = $query->where('project_id', $request->project)->get();
-        } else {
-            $tasks = $query->get();
+            $query->where('project_id', $request->project);
         }
 
+        if ($request->has('sort') && $request->sort == 'asc') {
+            $query->orderBy('due_date', 'asc');
+        } else {
+            $query->orderBy('due_date', 'desc');
+        }
 
-
+        $tasks = $query->get();
 
         return view('tasks.index', compact('tasks'));
     }

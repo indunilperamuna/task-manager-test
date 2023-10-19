@@ -44,7 +44,7 @@
                         <x-label for="status" value="{{ __('Status') }}" />
                         <select name="status" id="status">
                             <option value="pending" @if($task->status == 'pending') selected @endif >Pending</option>
-                            <option value="completed" @if($task->status == 'pending') selected @endif >Completed</option>
+                            <option value="completed" @if($task->status == 'completed') selected @endif >Completed</option>
                         </select>
                         <x-input-error for="due_date" class="mt-2" />
                     </div>
